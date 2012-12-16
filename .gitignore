@@ -1,2 +1,7 @@
-.swp
-~*
+*.swp
+*~
+
+*.aux
+*.log
+*.toc
+*.pdf
