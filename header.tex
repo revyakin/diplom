@@ -1,0 +1,25 @@
+\documentclass[utf8,a4paper,14pt,simple,floatsection]{eskdtext}
+
+\usepackage[T2A]{fontenc}
+\usepackage{mathtext}       % Русские буквы в формулах
+\usepackage{caption}        % Позволит подправить заголовки таблиц
+\usepackage{longtable}      % Таблицы с переносом на след. страницу 
+\usepackage{graphicx}       % Используем графику в документе
+\usepackage{textcase}       % Заголовки в ВЕРХНЕМ РЕГИСТРЕ
+\usepackage{rotating}       % Поворот текста
+
+% Двухсантиметровый отступ слева перед заголовками таблиц
+\captionsetup[table]{%
+    labelsep=dash,justification=raggedright,singlelinecheck=false,%
+    aboveskip=3mm,belowskip=0mm,margin=2cm}
+
+% Настойка заголовков разделов и подразделов ESKDX
+\ESKDsectAlign{section}{Center}
+\ESKDsectStyle{section}{\MakeTextUppercase}
+
+\ESKDsectAlign{subsection}{Left}
+\ESKDsectStyle{subsection}{}
+
+\ESKDsectAlign{subsubsection}{Left}
+\ESKDsectStyle{subsubsection}{}
+
