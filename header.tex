@@ -1,13 +1,17 @@
-\documentclass[utf8,a4paper,14pt,simple,floatsection]{eskdtext}
+\documentclass[utf8,russian,a4paper,14pt,%
+    simple,floatsection,equationsection]{eskdtext}
 
-\usepackage[T2A]{fontenc}
 \usepackage{mathtext}       % Русские буквы в формулах
+\usepackage{amsmath}        % Русские буквы в формулах
 \usepackage{caption}        % Позволит подправить заголовки таблиц
 \usepackage{longtable}      % Таблицы с переносом на след. страницу 
+\usepackage{tabularx}
 \usepackage{graphicx}       % Используем графику в документе
 \usepackage{textcase}       % Заголовки в ВЕРХНЕМ РЕГИСТРЕ
 \usepackage{rotating}       % Поворот текста
 \usepackage{eskdtotal}      % Счетчики
+\usepackage[T2A]{fontenc}
+%\usepackage{euler}
 
 % Двухсантиметровый отступ слева перед заголовками таблиц
 \captionsetup[table]{%
