@@ -1,7 +1,7 @@
 \documentclass[utf8,russian,a4paper,14pt,%
     simple,floatsection,equationsection]{eskdtext}
 
-\usepackage{mathtext}       % Русские буквы в формулах
+%\usepackage{mathtext}       % Русские буквы в формулах
 \usepackage{amsmath}        % Русские буквы в формулах
 \usepackage{caption}        % Позволит подправить заголовки таблиц
 \usepackage{longtable}      % Таблицы с переносом на след. страницу 
@@ -29,4 +29,7 @@
 \ESKDsectAlign{subsubsection}{Left}
 \ESKDsectStyle{subsubsection}{}
 
-
+% избавляемся от курсива в формулах
+%\DeclareSymbolFont{letters}{OT1}{cmr}{m}{n}
+\everymath={\rm}
+\everydisplay={\rm}
