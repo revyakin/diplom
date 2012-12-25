@@ -2,115 +2,302 @@
     \subsection{Расчет основных параметров двигателя}
         Пусковой ток
         \begin{gather*}
-            I_\text{п} = 5,5 \cdot I_\text{н},\\
-            I_\text{п} = 5,5 \cdot 0,76 = 4,18 \; \text{А}.
+            I_\text{п} = 5,5 \cdot I_\text{н}.%,\\
+            %I_\text{п} = 5,5 \cdot 0,76 = 4,18 \; \text{А}.
         \end{gather*}
 
         Номинальное скольжение
         \begin{gather*}
-            S_\text{н} = \frac{n_0 - n_\text{н}}{n_0},\\
-            S_\text{н} = \frac{1500 - 1350}{1500} = 0,1.
+            S_\text{н} = \frac{n_0 - n_\text{н}}{n_0}.%,\\
+            %S_\text{н} = \frac{1500 - 1350}{1500} = 0,1.
         \end{gather*}
 
         Критическое скольжение
         \begin{gather*}
             S_\text{кр} = S_\text{н} \cdot
-                \left( \lambda_{max} + \sqrt{\lambda_{max}^2 - 1} \right),\\
-            S_\text{кр} = 0,1 \cdot
-                \left( 2,1 + \sqrt{2,1^2 - 1} \right) = 0,416.
+                \left( \lambda_{max} + \sqrt{\lambda_{max}^2 - 1} \right).%,\\
+%            S_\text{кр} = 0,1 \cdot
+%                \left( 2,1 + \sqrt{2,1^2 - 1} \right) = 0,416.
         \end{gather*}
 
         Номинальный момент
         \begin{gather*}
             M_\text{н} = \cfrac{P_\text{н}}
-                {2\pi \cdot \cfrac{n_\text{н}}{60}},\\
-            M_\text{н} = \frac{120}{2\pi \cdot \cfrac{1350}{60}}
-                = 0,849 \; \text{Н} \cdot \text{м}.
+                {2\pi \cdot \cfrac{n_\text{н}}{60}}.%,\\
+%            M_\text{н} = \frac{120}{2\pi \cdot \cfrac{1350}{60}}
+%                = 0,849 \; \text{Н} \cdot \text{м}.
         \end{gather*}
 
-        Вычислим максимальный момент двигателя
+        Максимальный момент двигателя
         \begin{gather*}
-            M_{max} = \lambda \cdot M_\text{н},\\
-            M_{max} = 2,2 \cdot 0,849 = 1,867 \; \text{Н} \cdot \text{м}.
+            M_{max} = \lambda \cdot M_\text{н}.%,\\
+%%%%%%%%            M_{max} = 2,2 \cdot 0,849 = 1,867 \; \text{Н} \cdot \text{м}.
         \end{gather*}
 
-        Найдем сопротивление статора
+        Сопротивление статора
         \begin{gather*}
             R_s = \frac{\left(\cfrac{U_\text{н}}{\sqrt{3}}\right)
                 \cdot (1 - S_\text{н}) \cdot 1,5}{c_1 \cdot
                     \left(1+\cfrac{c_1}{S_\text{кр}}\right) \cdot
-                        M_{max} \cdot (P_\text{н} + \Delta P_\text{Т})},\\
-            R_s = \frac{\left(\cfrac{220}{\sqrt{3}}\right) \cdot (1-0,1)
-                \cdot 1,5}{1,026 \cdot \left(
-                   1+\cfrac{1,026}{S_\text{кр}}\right) 1,867 \cdot
-                        (120 + DP_T)} = 0,18 \; \text{Ом}
+                        M_{max} \cdot (P_\text{н} + \Delta P_\text{Т})}.%,\\
+       %     R_s = \frac{\left(\cfrac{220}{\sqrt{3}}\right) \cdot (1-0,1)
+       %         \cdot 1,5}{1,026 \cdot \left(
+       %            1+\cfrac{1,026}{S_\text{кр}}\right) 1,867 \cdot
+       %                 (120 + DP_T)} = 0,18 \; \text{Ом}
         \end{gather*}
 
-        Найдем сопротивление ротора
+        Сопротивление ротора
         \begin{gather*}
                 R_r = \frac{P_\text{н} + \Delta P_\text{Т}}
                     {3 \cdot (1-S_\text{н}) \cdot i_\text{к}^2
-                        \cdot I_\text{н}^2},\\
-                R_r = \frac{P_\text{н} + \Delta P_\text{Т}}
-                    {3 \cdot (1-S_\text{н}) \cdot i_\text{к}^2
-                        \cdot I_\text{н}^2} = 0,15 \; \text{Ом}.
+                        \cdot I_\text{н}^2}.%,\\
+%                R_r = \frac{P_\text{н} + \Delta P_\text{Т}}
+%                    {3 \cdot (1-S_\text{н}) \cdot i_\text{к}^2
+%                        \cdot I_\text{н}^2} = 0,15 \; \text{Ом}.
         \end{gather*}
 
-        Расчитаем индуктивность статора
+        Расчет индуктивности статора
         \begin{gather*}
             L_s = \frac{\cfrac{U_\text{н}}{\sqrt{3} \cdot
                 (2\pi \cdot f \cdot I_\text{н})}}{\sqrt{1 - \cos^2 f}
-                    - \cos f \left(\cfrac{S_\text{н}}{S_\text{кр}}\right)},\\
-            L_s = \frac{\cfrac{220}{\sqrt{3}} \cdot
-                (2\pi \cdot 50 \cdot 0,76)}{\sqrt{1 - 0,66^2}
-                    - 0,66 (0,416)} = 0,0043 \; \text{Гн}.
+                    - \cos f \left(\cfrac{S_\text{н}}{S_\text{кр}}\right)}.%,\\
+%            L_s = \frac{\cfrac{220}{\sqrt{3}} \cdot
+%                (2\pi \cdot 50 \cdot 0,76)}{\sqrt{1 - 0,66^2}
+%                    - 0,66 (0,416)} = 0,0043 \; \text{Гн}.
         \end{gather*}
 
-        Рассчитаем индуктивность ротора
+        Формула рассчета индуктивность ротора
         \begin{gather*}
-            L_r = L_s,\\
-            L_r = 0,0043 \; \text{Гн}.
+            L_r = L_s.%,\\
+%            L_r = 0,0043 \; \text{Гн}.
         \end{gather*}
 
         Индуктивность намагничивания
         \begin{gather*}
-            L_m = L_s - L_{1s} = 0,00382 \; \text{Гн}.
+            L_m = L_s - L_{1s}.
+            %L_m = L_s - L_{1s} = 0,00382 \; \text{Гн}.
         \end{gather*}
 
         Конструктивная постоянная
         \begin{gather*}
-            clr = 1+\frac{L_{1s}}{L_m} = 0,0109.
+            C_{1r} = 1+\frac{L_{1s}}{L_m}.
+            %C_{1r} = 1+\frac{L_{1s}}{L_m} = 0,0109.
         \end{gather*}
 
         Вычислим время разгона
         \begin{gather*}
             t_\text{р} = \frac{\omega_\text{н}}{
-                \cfrac{M_\text{н}}{j}} = 0,13 \; \text{с}.
+                \cfrac{M_\text{н}}{j}}.
+%            t_\text{р} = \frac{\omega_\text{н}}{
+%                \cfrac{M_\text{н}}{j}} = 0,13 \; \text{с}.
         \end{gather*}
 
-        Вычислим номинальную угловую скорость
+        Номинальная угловуя скорость
         \begin{gather*}
-            \omega_\text{н} = \frac{2\pi n_\text{н}}{60} 
-                = \frac{2 \cdot 3,14 \cdot 1350}{60} = 141 \; \text{мин}^{-1}.
+            \omega_\text{н} = \frac{2\pi n_\text{н}}{60}.
+%            \omega_\text{н} = \frac{2\pi n_\text{н}}{60} 
+%                = \frac{2 \cdot 3,14 \cdot 1350}{60} = 141 \; \text{мин}^{-1}.
         \end{gather*}
 
-        Вычислим скорость идеального холостого хода
+        Скорость идеального холостого хода
         \begin{gather*}
-            \omega_0 = \frac{2\pi n_0}{60} 
-                = \frac{2 \cdot 3,14 \cdot 1500}{60} = 157 \; \text{мин}^{-1}.
+            \omega_0 = \frac{2\pi n_0}{60}.
+%            \omega_0 = \frac{2\pi n_0}{60} 
+%                = \frac{2 \cdot 3,14 \cdot 1500}{60} = 157 \; \text{мин}^{-1}.
         \end{gather*}
 
         Индуктивное сопротивение статора
         \begin{gather*}
-            X_s = 2\pi \cdot 50 \cdot L_s
-                = 6,28 \cdot 50 \cdot 0,0043 = 1,35 \text{Ом}.
+            X_s = 2\pi \cdot 50 \cdot L_s.
+%            X_s = 2\pi \cdot 50 \cdot L_s
+%                = 6,28 \cdot 50 \cdot 0,0043 = 1,35 \text{Ом}.
         \end{gather*}
         
         Индуктивное сопротивление ротора
         \begin{gather*}
-            X_r = 2\pi \cdot 50 \cdot L_r
-                = 6,28 \cdot 50 \cdot 0,0043 = 1,35 \text{Ом}.
+            X_r = 2\pi \cdot 50 \cdot L_r.
+%            X_r = 2\pi \cdot 50 \cdot L_r
+%                = 6,28 \cdot 50 \cdot 0,0043 = 1,35 \text{Ом}.
         \end{gather*}
+
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.6\linewidth]{img/static-scr2}}
+            \caption{Входные данные для расчета параметров электродвигателя}
+            \label{fig:static-scr2}
+        \end{figure}       
+
+        Для рассчета параметров двигателя и построения механических характеристик воспользуемся программой STATIC. 
+        На рисунке \ref{fig:static-scr2} изображено окно программы со входными данными для рассчета.
+
+        Рассчитанные параметры электродвигателя, а также построенные
+        механические характеристики показаны на рисунке \ref{fig:static-scr1}.
+        Блее детальный вид характеристики, построенной используя однофазную
+        схему замещения, приведен на рисунке \ref{fig:motor-mh1}.  А
+        механическая характеристика, рассчитанная по формуле Клосса, изображена
+        на рисунке \ref{fig:motor-mh2}.
+
+        \begin{figure}[h!]
+            \center{\includegraphics[width=1.0\linewidth]{img/static-scr1}}
+            \caption{Окно результатов расчета параметров двигателя}
+            \label{fig:static-scr1}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.6\linewidth]{img/motor-mh1}}
+            \caption{Механическая характеристика двигателя, построенная по схеме замещения}
+            \label{fig:motor-mh1}
+        \end{figure}
+
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.6\linewidth]{img/motor-mh2}}
+            \caption{Механическая характеристика двигателя, построенная по формуле Клосса}
+            \label{fig:motor-mh2}
+        \end{figure}
+
+    \subsection{Моделирование системы скалярного управления асинхронного
+        электропривода с к. з. ротором}
+
+        Асинхронный привод со скалярным частотным управлением используется для
+        механизмов средней и малой мощности, который не требуют глубокого
+        регулирования скорости и высокого качества переходных процессов.
+
+        Уравнение электромагнитных контуров АД в установившемся режиме будет
+        иметь вид
+        \begin{gather*}
+            \left\{
+            \begin{aligned}
+                \frac{\tilde U_s}{\omega_s} =\tilde I_s\frac{Rs}{\omega_s}+
+                    j\tilde \Psi_s=\tilde I_s\frac{R_s}{\omega_s}+
+                        jL_{s\sigma}\tilde I_s +j\tilde \Psi_m\\
+                0 = \tilde I_r\frac{R_r}{\beta}+j\tilde \Psi_r =
+                    \tilde I_r\frac{R_r}{\beta}+jL_{r\sigma}\tilde I_r+
+                        j \tilde \Psi_m,\\
+            \end{aligned}
+            \right.
+        \end{gather*}
+
+        где $\beta = \omega_s - \omega_r = S\omega_s$ -- абсолютное скольжение АД;\par
+        $\tilde \Psi_m = L_m \tilde I_m = L_m(\tilde I_s + \tilde I_r)$ -- потокосцепление
+        в воздушном зазоре.
+
+        Приведенной системе уравнений соответствует эквивалентная схема
+        замещения, которая представлена на рисунке \ref{fig:ad-zam}.  
+
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.6\linewidth]{img/ad-zam}}
+            \caption{Эквивалентная схема замещения асинхронного двигателя с к. з. ротором}
+            \label{fig:ad-zam}
+        \end{figure}
+
+        Передаточная функция регулятора напряжения внешнего контура в виде
+        \begin{gather*}
+            W_{PUs}(p)=\frac{\pi}{2\sqrt{3}}\cdot\frac{k_{Id}}{k_{Us}R_D} \cdot
+                \frac{(T_D + T_F) p+1}{T_{H2}p},
+        \end{gather*}
+
+        где $k_v$ -- коэффициент усиления КВ.
+
+        \begin{gather*}
+            R_D = \frac{\pi^2}{18} \cdot \frac{L_s}{T_r(1 - \sigma)S_1},
+        \end{gather*}
+
+        где $T_D=R_D C_F$ -- эквивалентное сопротивление и эквивалентная
+        постоянная времени объекта <<АИН -- АД>>;\par
+        $S_1$ -- расчетный параметр,
+        который косвенно отображает желаемую жесткость механических
+        характеристик ЭП (для расчетов можно принять равным 0,1);\par
+        $k_{Ui}$ -- коэффициент передачи датчика напряжения на входе АИН; 
+        $T_H = k_{kUi}Tv$ --квивалентная постоянная времени интегрирования
+            регулятора напряжения на входе АИН;\par
+        $k_{kUi}$ -- аладочный коэффициент, значения которого превышают 1. 
+
+        С помощью ПЧ может быть реализована нужная зависимость напряжения
+        статора АД от частоты. Закон частотного регулирования, который
+        реализованный в ПЧ должен выполняться при $U_S \leq U_{SH}$ для
+        предотвращения питания АД увеличенным напряжением. При необходимости
+        дальнейшего повышения частоты вращения напряжение статора АД должно
+        быть ограничено, а регулирование скорости в этой зоне осуществляется
+        лишь за счет повышения частоты.
+        \begin{gather*}
+            \left\{
+            \begin{aligned}
+                \frac{d\Phi_{sx}}{dt} = U_{sx} - R_s i_{sx} + \omega_k \Psi_{sy}\\
+                \frac{d\Phi_{sy}}{dt} = U_{sy} - R_s i_{sy} + \omega_k \Psi_{sx}\\
+                \frac{d\Phi_{rx}}{dt} = R_s i_{sx} + (\omega_k-\omega) \Psi_{ry}\\
+                \frac{d\Phi_{ry}}{dt} = R_s i_{sy} + (\omega_k-\omega) \Psi_{rx},\\
+            \end{aligned}
+            \right.
+        \end{gather*}
+
+        где $\Psi_{sx}, \Psi_{sy}$ -- потокосцепления эквивалентных статорных
+            контуров;\par
+        $\Psi_{rx}, \Psi_{ry}$ -- потокосцепления эквивалентных роторных
+            контуров;\par
+        $i_{sx}, i_{sy}$ -- эквивалентные  токи статора;\par
+        $i_{rx}, i_{ry}$ -- эквивалентные  токи ротора;\par
+        $R_s, R_r$ -- активные сопротивления фазных обмоток статора и ротора.
+
+        Для решения этой системы уравнений ее необходимо дополнить уравнениями
+        связи эквивалентных токов и потокосцеплений машины. В системе координат
+        (х–у) эквивалентные потокосцепления и токи статора и ротора двигателя
+        связаны друг с другом следующими уравнениями
+        \begin{gather*}
+            \left\{
+            \begin{aligned}
+                \Psi_{sx} = L_s i_{sx} + L_m i_{rx}\\
+                \Psi_{sy} = L_s i_{sy} + L_m i_{rx}\\
+                \Psi_{rx} = L_s i_{sx} + L_r i_{rx}\\
+                \Psi_{ry} = L_s i_{sy} + L_r i_{rx}\\
+            \end{aligned}
+            \right.
+        \end{gather*}
+
+    \subsection{Математическое описание и динамическая модель АД как обобщенной
+        электрической машины}
+
+        Структурная схема модели в фазных координатах получается весьма сложной
+        из-за наличия переменных коэффициентов в уравнениях связи фазных токов
+        и потокосцеплений машины, зависящих от мгновенного значения угла
+        поворота ротора относительно магнитных осей статора двигателя. С целью
+        упрощения математических моделей систему уравнений трехфазной
+        асинхронной машины, записанную в фазных координатах, принято
+        представлять в ортогональной системе координат (х–у), вращающейся в
+        пространстве в общем случае с произвольной угловой скоростью $\omega_k$.
+
+        Эквивалентные напряжения статора в системе координат (х–у) связаны с
+        фазными напряжения трехфазной машины следующими соотношениями
+        \begin{gather*}
+            U_{sx} = \frac{2}{3} \left[ U_\text{ФА}\cos\omega_k t+U_\text{ФВ}
+                \cos\left(\omega_k t-\frac{2\pi}{3}\right)+U_\text{ФС} \cos
+                    \left( \omega_k t+\frac{2\pi}{3}\right)\right],\\
+            U_{sy} = -\frac{2}{3} \left[ U_\text{ФА}\cos\omega_k t+U_\text{ФВ}
+                \cos\left(\omega_k t-\frac{2\pi}{3}\right)+U_\text{ФС} \cos
+                    \left( \omega_k t+\frac{2\pi}{3}\right)\right],\\
+        \end{gather*}
+
+        Аналогичные соотношения связывают эквивалентные значения токов и
+        потокосцеплений двигателя с соответствующими фазными значениями
+        переменных. Подставляя в эти уравнения выражения для реальных фазных
+        напряжений
+        \begin{gather*}
+            U_\text{ФА} = U_m\cos(\omega_0 t + \varphi_0),\\
+            U_\text{ФВ} = U_m\cos\left(\omega_0t-\frac{2\pi}{3}+\varphi_0\right),\\
+            U_\text{ФC} = U_m\cos\left(\omega_0t+\frac{2\pi}{3}+\varphi_0\right),\\
+        \end{gather*}
+
+        Можно получить выражения для составляющих напряжений в эквивалентной
+        2-хфазной системе координат
+        \begin{gather*}
+            U_{sx} = U_m \cos [(\omega_0 - \omega_k)t + \varphi_0],\\
+            U_{sy} = U_m \sin [(\omega_0 - \omega_k)t + \varphi_0],\\
+        \end{gather*}
+
+        где $U_m$ -- амплитудное значение фазного напряжения;
+        $\omega_0$ -- частота вращения поля статора двигателя в пространстве;
+        $\varphi_0$ -- начальная фаза напряжения фазы А.
+
+        Система уравнений электромагнитного равновесия асинхронного двигателя в форме Коши в системе координат (х–у) может быть представлена следующим образом
+
     \subsection{Разработка аппаратной части системы управления автономным
         инвертором напряжения}
 
