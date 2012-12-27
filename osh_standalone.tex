@@ -1,6 +1,22 @@
 \input{header.tex}
 
+\ESKDsectSkip{section}{5mm}{7mm}
+%\ESKDsectSkip{subsection}{5mm}{5mm}
+%\ESKDsectSkip{subsubsection}{5mm}{5mm}
+%\ESKDsectSkip{section}{1cm}{0cm}
+
 \begin{document}
+    \setlength{\abovedisplayskip}{25pt}
+    \setlength{\belowdisplayskip}{25pt}
+    \setlength{\abovedisplayshortskip}{25pt}
+    \setlength{\belowdisplayshortskip}{25pt} 
+%    \setlength{\leftmargin}{0cm}
+%    \setlength{\itemindent}{1,5cm}
+    \setitemize{fullwidth, itemindent=\parindent,
+        listparindent=\parindent}
+
+    
+
     \ESKDthisStyle{formIIab}
     \input{osh_section.tex}
 \end{document}

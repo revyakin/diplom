@@ -16,20 +16,50 @@
 
 % Двухсантиметровый отступ слева перед заголовками таблиц
 \captionsetup[table]{%
-    labelsep=dash,justification=raggedright,singlelinecheck=false,%
+    format=hang,labelsep=dash,justification=raggedright,singlelinecheck=false,%
     aboveskip=3mm,belowskip=0mm,margin=2cm}
 
 % Настойка заголовков разделов и подразделов ESKDX
 \ESKDsectAlign{section}{Center}
 \ESKDsectStyle{section}{\MakeTextUppercase}
+\ESKDsectSkip{section}{5mm}{7mm}
 
 \ESKDsectAlign{subsection}{Left}
 \ESKDsectStyle{subsection}{}
+\ESKDsectSkip{subsubsection}{2cm plus 0pt minus 0pt}{2cm plus 0pt minus 0pt}
 
 \ESKDsectAlign{subsubsection}{Left}
 \ESKDsectStyle{subsubsection}{}
+%\ESKDsectSkip{subsubsection}{5mm}{7mm}
 
 % избавляемся от курсива в формулах
 %\DeclareSymbolFont{letters}{OT1}{cmr}{m}{n}
 \everymath={\rm}
 \everydisplay={\rm}
+
+\usepackage{tocloft}
+\renewcommand{\cftparskip}{-1mm}
+
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+
+\renewcommand{\cftsecnumwidth}{1em}
+\renewcommand{\cftsubsecnumwidth}{1,7em}
+\renewcommand{\cftsubsubsecnumwidth}{2,5em}
+
+\renewcommand{\cftsecindent}{0em}
+\renewcommand{\cftsubsecindent}{0em}
+\renewcommand{\cftsubsubsecindent}{0em}
+
+\renewcommand{\cftsecpagefont}{\normalsize}
+
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\normalsize}
+\renewcommand{\cftsubsubsecfont}{\normalsize}
+
+\renewcommand{\cftbeforesecskip}{0em}
+
+\renewcommand{\cftdotsep}{1}
+\renewcommand{\cftsecdotsep}{1}
+\setcounter{tocdepth}{3} % задать глубину оглавления — до subsubsection включительно
+

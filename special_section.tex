@@ -1,4 +1,5 @@
 \section{Специальная часть}
+    \subsection{Расчет основных параметров двигателя}
         Цель работы – разработать систему управления асинхронным двигателем
         исследовательского стенда электромеханической системы на основе
         микроконтроллера STM32F100RBT6B и трехфазного драйвера силовых
@@ -12,10 +13,6 @@
         Разрабатываемая система должна обеспечивать связь с ПК для мониторинга
         и контроля основных параметров.
 
-        Питание системы должно осуществляться от бытовой сети 220 В переменного
-        тока.
-
-    \subsection{Расчет основных параметров двигателя}
         Пусковой ток
         \begin{gather*}
             I_\text{п} = 5,5 \cdot I_\text{н}.%,\\
@@ -136,36 +133,35 @@
 %                = 6,28 \cdot 50 \cdot 0,0043 = 1,35 \text{Ом}.
         \end{gather*}
 
-        \begin{figure}[h!]
-            \center{\includegraphics[width=0.6\linewidth]{img/static-scr2}}
-            \caption{Входные данные для расчета параметров электродвигателя}
-            \label{fig:static-scr2}
-        \end{figure}       
-
         Для рассчета параметров двигателя и построения механических
         характеристик воспользуемся программой STATIC.  На рисунке
         \ref{fig:static-scr2} изображено окно программы со входными данными для
         рассчета.
 
+        \begin{figure}[th!]
+            \center{\includegraphics[width=0.8\linewidth]{img/static-scr2}}
+            \caption{Входные данные для расчета параметров электродвигателя}
+            \label{fig:static-scr2}
+        \end{figure}       
+
         Рассчитанные параметры электродвигателя, а также построенные
         механические характеристики показаны на рисунке \ref{fig:static-scr1}.
-        Блее детальный вид характеристики, построенной используя однофазную
+        Bид характеристики, построенной используя однофазную
         схему замещения, приведен на рисунке \ref{fig:motor-mh1}.  %А
         %механическая характеристика, рассчитанная по формуле Клосса, изображена
         %на рисунке \ref{fig:motor-mh2}.
 
-        \begin{figure}[h!]
-            \center{\includegraphics[width=0.6\linewidth]{img/motor-mh1}}
+        \begin{figure}[bh!]
+            \center{\includegraphics[width=0.8\linewidth]{img/motor-mh1}}
             \caption{Механическая характеристика двигателя, построенная по схеме замещения}
             \label{fig:motor-mh1}
         \end{figure}
 
-        \begin{figure}[h!]
-            \center{\includegraphics[width=0.9\linewidth]{img/static-scr1}}
+        \begin{sidewaysfigure}
+            \center{\includegraphics[width=0.8\linewidth]{img/static-scr1}}
             \caption{Окно результатов расчета параметров двигателя}
             \label{fig:static-scr1}
-        \end{figure}
-
+        \end{sidewaysfigure}
 
 %        \begin{figure}[ht!]
 %            \center{\includegraphics[width=0.3\linewidth]{img/motor-mh2}}
@@ -198,7 +194,7 @@
         \end{sidewaysfigure}
 
         Сигнал управления трехфазным мостом силовых транзисторов АИН снимается
-        с выводов PA8, PA9, PA10 (верхние транзизторы моста; фаза A, B и C
+        с выводов PA8, PA9, PA10 (верхние транзизторы моста, фаза A, B и C
         соответственно) и PB13, PB14, PB15 (фаза A, B и C; нижние транзисторы).
         Далее сигнал подается на схему гальванической развязки выполненную на
         двух микросхемах U3 и U4. 
@@ -237,7 +233,7 @@
             \label{fig:control-board-place}
         \end{figure}
 
-        %\clearpage
+        \clearpage
         
     \subsubsection{Описание модуля STM32VLDiscovery}
         STM32VLDiscovery -- встраиваемый модуль с интегрированным\\
@@ -283,9 +279,9 @@
     \subsubsection{Описание микроконтроллера STM32F100RBT6B}
         Особенности микроконтроллера STM32F100R:
         \begin{itemize}
-            \item Вычислительное ядро Cortex-M3;
-            \item Максимальная тактовая частота: 24 МГц;
-            \item Напряжение питания 2,0 — 3,6 В;
+            \item вычислительное ядро Cortex-M3;
+            \item максимальная тактовая частота: 24 МГц;
+            \item напряжение питания 2,0 — 3,6 В;
             \item 128 кбайт NOR flash памяти с количеством циклов перезаписи 10000;
             \item 8 кбайт статической оперативной памяти;
             \item 7-канальный контроллер прямого доступа в память;
@@ -294,8 +290,11 @@
             \item 12-битный ЦАП;
             \item 16-битный таймер с расширенными функциями;
             \item шесть 16-битных таймеров общего назначения;
-            \item Восемь коммуникационных интерфейсов (I2C, USART, SPI).
+            \item восемь коммуникационных интерфейсов (I2C, USART, SPI).
         \end{itemize}
+
+        Структурная схема микроконтроллера представлена на рисунке
+        \ref{fig:stm32f100rbt6b}.
 
         \begin{sidewaysfigure}
             \center{\includegraphics[width=0.65\linewidth]{img/stm32f100rbt6b}}
@@ -362,20 +361,22 @@
         ADuM1300 – трех канальные цифровые изоляторы компании Analog Devices.
         Отличительные особенности:
         \begin{itemize}
-            \item низкое потребление (1.0 мА на канал на скорости до 10
+            \item низкое потребление (1,0 мА на канал на скорости до 10
                 Мбит/с);
             \item двунаправленная передача данных;
-            \item совместим с 3.3 В и 5.0 В питанием/уровнями логических
+            \item совместим с 3,3 В и 5,0 В питанием/уровнями логических
                 сигналов;
-            \item высокая скорость передачи данных: от 0 до 10 Мбит/с;
+            \item высокая скорость передачи данных от 0 до 10 Мбит/с;
             \item максимальное искажение длительности импульса 2 нс;
             \item максимальное временное рассогласование каналов 2 нс;
             \item способность выдерживать воздействие изменяющегося входного
                 синфазного сигнала, имеющего скорость нарастания более 25
                 кВ/мкс;
             \item Функция активизации выходов;
-            \item широкий 16 выводной SOIC корпус;
+            \item широкий 16 выводной SOIC корпус.
         \end{itemize}
+
+        Cтруктурная схема цифрового изолятора преведена на рисунке \ref{fig:adum1300}.
 
         \begin{figure}[h!]
             \center{\includegraphics[width=0.8\linewidth]{img/adum1300}}
@@ -469,44 +470,51 @@
         функции округляются в соответствии с разрядностью ЦАП.
 
         Так как производится синтез гармонического колебания, фазовый угол
-        $\varphi$ равен: $\varphi = 2\pi \cdot T_n$. Тогда частота выходного
+        $\varphi$ равен $\varphi = 2\pi \cdot T_n$. Тогда частота выходного
         сигнала $F$ равна произведению частоты тактов $F_{DDS}$ на относительное
-        приращение целочисленного аргумента:
+        приращение целочисленного аргумента
         \begin{gather*}
             F = \frac{\Delta n \cdot F_{DDS}}{2^N}.
         \end{gather*}
 
-        Листинг функии синтеза трехфазной системы напряжений:
-        \begin{verbatim}
-        void sine_generation_task(void)
-        {
-            uint8_t  index;
-            uint16_t pwm;
+        Листинг функии синтеза трехфазной системы напряжений представлени на
+        рисунке \ref{fig:listing-sinegen}.
 
-            /* phase increment */
-            m_phase += m_delta;
-         
-            /* phase U duty cycle */
-            index = (m_phase + PHASE_SHIFT_U) >> 8;
-            pwm = (sine_table[index] * m_amplitude) >> 7;
-
-            pwm_load_u(PWM_ZERO + pwm);
-
-            /* phase V duty cycle */
-            index = (m_phase + PHASE_SHIFT_V) >> 8;
-            pwm = (sine_table[index] * m_amplitude) >> 7;
-
-            pwm_load_v(PWM_ZERO + pwm);
-
-            /* phase W duty cycle */
-            index = (m_phase + PHASE_SHIFT_W) >> 8;
-            pwm = (sine_table[index] * m_amplitude) >> 7;
-
-            pwm_load_w(PWM_ZERO + pwm);
-        }
-        \end{verbatim}
-
-        Блок-схема функции изображена на рисунке \ref{fig:bs-dds}
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.60\linewidth]{img/listing-sinegen}}
+            \caption{Листинг функции реализации цифрового синтеза трехфазной
+                системы синусоидальных напряжений}
+            \label{fig:listing-sinegen}
+        \end{figure}
+%        \begin{verbatim}
+%        void sine_generation_task(void)
+%        {
+%            uint8_t  index;
+%            uint16_t pwm;
+%
+%            /* phase increment */
+%            m_phase += m_delta;
+%         
+%            /* phase U duty cycle */
+%            index = (m_phase + PHASE_SHIFT_U) >> 8;
+%            pwm = (sine_table[index] * m_amplitude) >> 7;
+%
+%            pwm_load_u(PWM_ZERO + pwm);
+%
+%            /* phase V duty cycle */
+%            index = (m_phase + PHASE_SHIFT_V) >> 8;
+%            pwm = (sine_table[index] * m_amplitude) >> 7;
+%
+%            pwm_load_v(PWM_ZERO + pwm);
+%
+%            /* phase W duty cycle */
+%            index = (m_phase + PHASE_SHIFT_W) >> 8;
+%            pwm = (sine_table[index] * m_amplitude) >> 7;
+%
+%            pwm_load_w(PWM_ZERO + pwm);
+%        }
+%        \end{verbatim}
+        Блок-схема функции изображена на рисунке \ref{fig:bs-dds}.
 
         \begin{figure}[h!]
             \center{\includegraphics[width=0.40\linewidth]{img/bs-dds}}
@@ -529,15 +537,15 @@
         На вход блока синтеза трехфазной системы синусоидальных напряжений
         поступают два сигнала: амплитуда сигнала $A$ (в переменной
         \verb"m_amplitude") и приращение фазы $\Delta n$ (в переменной
-        \verb"m_delta"). Частота выходного сигна определяется по формуле:
+        \verb"m_delta"). Частота выходного сигна определяется по формуле
         \begin{gather*}
             F = \frac{\Delta n \cdot F_{DDS}}{2^{16}},
         \end{gather*}
 
-        где $F_c$ -- частота следования итераций алгоритма (в данном случае
-        $F_{DDS} = 12$ КГц).
+        где $F_c$ -- частота следования итераций алгоритма (в данном случае \\
+        $F_{DDS} = 12$ кГц).
 
-        Амплитуда выходного сигнала:
+        Амплитуда выходного сигнала
         \begin{gather*}
             A_\text{вых} = \frac{U_\text{п} \cdot A}{2000},
         \end{gather*}
@@ -547,30 +555,38 @@
 %        ШИМ сигнал управления трехфазным мостом АИН формируется блоком
 %        сравнения таймера 1 микроконтроллера.
     \subsubsection{Релизация скалярного закона управления}
-        Закон управления $V/f = const$ реализован в функции, листинг которой приведен ниже:
-        \begin{verbatim}
-            unsigned int vf_control(int frequency)
-            {
-                unsigned int amplitude;
+        Закон управления $V/f = const$ реализован в функции, листинг которой приведен на рисунке \ref{fig:listing-vf}.
+        Блок-схема функции изображена на рисунке \ref{fig:bs-vf}.
 
-                frequency = abs(frequency);
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.70\linewidth]{img/listing-vf}}
+            \caption{Листинг функции реализации закона $U/f = const$}
+            \label{fig:listing-vf}
+        \end{figure}
 
-                /* Vf law */
-                amplitude = frequency * VF_SLOPE / 256;
-
-                /* Amplitude saturation */
-                if (amplitude > VF_MAX_AMPLITUDE)
-                {
-                    amplitude = VF_MAX_AMPLITUDE;
-                } 
-                else if (amplitude < VF_MIN_AMPLITUDE)
-                {
-                    amplitude = VF_MIN_AMPLITUDE;
-                }
-
-                return amplitude;
-            }
-        \end{verbatim}
+%        \begin{verbatim}
+%            unsigned int vf_control(int frequency)
+%            {
+%                unsigned int amplitude;
+%
+%                frequency = abs(frequency);
+%
+%                /* Vf law */
+%                amplitude = frequency * VF_SLOPE / 256;
+%
+%                /* Amplitude saturation */
+%                if (amplitude > VF_MAX_AMPLITUDE)
+%                {
+%                    amplitude = VF_MAX_AMPLITUDE;
+%                } 
+%                else if (amplitude < VF_MIN_AMPLITUDE)
+%                {
+%                    amplitude = VF_MIN_AMPLITUDE;
+%                }
+%
+%                return amplitude;
+%            }
+%        \end{verbatim}
         
         Входным параметром данной функции является частота синусоидального
         сигнала. В соответствии со входным параметром и наклоном
@@ -578,7 +594,7 @@
         необходимое напряжение питания статора электродвигателя. Выходное
         значение, также, ограничивается в пределах значения констант
         \verb"VF_MIN_AMPLITUDE" и \verb"VF_MAX_AMPLITUDE".
-        Блок-схема функции изображена на рисунке \ref{fig:bs-vf}.
+        %Блок-схема функции изображена на рисунке \ref{fig:bs-vf}.
 
         \begin{figure}[ph!]
             \center{\includegraphics[width=1.0\linewidth]{img/bs-vf}}
@@ -586,7 +602,7 @@
             \label{fig:bs-vf}
         \end{figure}
         
-        Значение константы \verb"VF_SLOPE" определяется следующим отношением:
+        Значение константы \verb"VF_SLOPE" определяется следующим отношением
         \begin{gather*}
             V/f = \frac{U_\text{н}}{f_\text{н}} \cdot \frac{K_{DDS}}{2000} \cdot 256,
         \end{gather*}
@@ -595,33 +611,34 @@
         $f_\text{н}$ -- номинальная частота питающего напряжения электродвигателя;\par
         $K_{DDS}$ -- коэффициент передачи модуля синтеза частоты.
 
-        Коэффициент передачи синтезатора определяется так:
+        Коэффициент передачи синтезатора определяется так
         \begin{gather*}
             K_{DDS} = \frac{F_{DDS}}{2^{16}},
         \end{gather*}
 
-        где $F_{DDS}$ -- частота приращения фазы синтезатора (в данном случае
+        где $F_{DDS}$ -- частота приращения фазы синтезатора (в данном случае\\
         $F_{DDS} = 12$ КГц).
 
         Для данного двигателя наклон прямой зависимости напряжения питания от
-        частоты выражается следующей формулой:
+        частоты выражается следующей формулой
         \begin{gather*}
-            V/f = \frac{220}{50} \cdot \frac{12000}{2^{16}} \cdot 256 = 206
+            V/f = \frac{220}{50} \cdot \frac{12000}{2^{16}} \cdot 256 = 206.
         \end{gather*}
+        \clearpage
 
     \subsubsection{Реализация дискретного ПИД-регулятора}
         Для стабилизации скорости частоты вращения вала электродвигателя был
         применен дискретный ПИД-регулятор. Регулятор реализован программно
         внутри управляющего ПО системы электропривода.
-
+        На рисунке \ref{fig:system-with-pid} показана схема системы с
+        ПИД-регулятором.
         \begin{figure}[h!]
             \center{\includegraphics[width=0.8\linewidth]{img/system-with-pid}}
             \caption{Структурная схема системы с ПИД-регулятором}
             \label{fig:system-with-pid}
         \end{figure}
 
-        На рисунке \ref{fig:system-with-pid} показана схема системы с
-        ПИД-регулятором. На вход ПИД-регулятора поступает значение частоты
+        На вход ПИД-регулятора поступает значение частоты
         вращения ротора электродвигателя, снятое с датчика скорости. Регулято
         сравнивает измеренное значение частоты вращения  с заданным опорным
         значением. Затем разница, или ошибка, E, обрабатывается для расчета
@@ -640,13 +657,20 @@
         $T_p$, $T_i$, и $T_d$ обозначают постоянные времени пропорциональной,
         интегральной, и дифференциальной составляющих соответственно.
 
+        \begin{figure}[h!]
+            \center{\includegraphics[width=0.8\linewidth]{img/pid}}
+            \caption{Структурная схема системы с ПИД-регулятором}
+            \label{fig:pid}
+        \end{figure}
+
+
         Передаточная функция системы, изображенной на рисунке \ref{fig:pid}
-        имеет вид:
+        имеет вид
         \begin{gather*}
             \frac{u}{e}(s) = H(s) = K_p \left(1 + \frac{1}{T_i s} + T_d s\right).
         \end{gather*}
 
-        Отсюда имеем:
+        Отсюда имеем
         \begin{gather*}
             u(t) = K_p \left( e(t)+\frac{1}{T_i} 
                 \int \limits_0^t e(\sigma)d \sigma + T_d \frac{de(t)}{dt} \right).
@@ -680,7 +704,7 @@
         к шуму.
 
         Аппроксимируем интегральную и дифференциальную составляющие, чтобы
-        получить дискретный вид:
+        получить дискретный вид
         \begin{gather*}
             \int \limits_0^t e(\sigma)d\sigma \approx T \sum \limits_{k=0}^n e(k),\\
             \frac{de(t)}{dt} \approx \frac{e(n) - e(n - 1)}{T},\\
@@ -689,89 +713,19 @@
 
         где $n$ -- дискретный шаг времени t.
 
-        Это дает нам такой регулятор:
+        Это дает нам такой регулятор
         \begin{gather*}
-            u(n) = K_p e(n) + K_i \sum \limits_{k=0}^n e(k) + K_d (e(n)-e(n-1));
+            u(n) = K_p e(n) + K_i \sum \limits_{k=0}^n e(k) + K_d (e(n)-e(n-1)),
         \end{gather*}
 
-        Где
+        где
         \begin{gather*}
-            K_i = \frac{K_p T}{T_i};\\
+            K_i = \frac{K_p T}{T_i},\\
             K_d = \frac{K_p T_d}{T}.
         \end{gather*}
 
-        Реализация ПИД-контоллера на языке С представлена ниже:
-        \begin{verbatim}
-            #define SCAL_FACTOR 1024
-            #define P_TERM_MAX  (INT32_MAX / 4)
-            #define I_TERM_MAX  (INT32_MAX / 4)
-
-            typedef struct {
-
-                /* PID koeff. */
-                uint16_t    p_factor;
-                uint16_t    i_factor;
-                uint16_t    d_factor;
-
-                /* Int. term summator */
-                int32_t     sum_error;
-
-                /* Last measured value. Use for diff. term */
-                int16_t     last_meas;
-
-                /* Max values */
-                int32_t     max_sum;
-                int32_t     max_error;
-            } pidc_t;
-            void pid_init( pidc_t *pid, uint16_t p_factor,
-                uint16_t i_factor, uint16_t d_factor )
-            {
-                /* Reset PID */
-                pid->last_meas = 0;
-                pid->sum_error = 0;
-
-                /* Tuning */
-                pid->p_factor = p_factor;
-                pid->i_factor = i_factor;
-                pid->d_factor = d_factor;
-
-                /* Calculate max values */
-                pid->max_error = P_TERM_MAX / (pid->p_factor + 1);
-                pid->max_sum   = I_TERM_MAX / (pid->i_factor + 1);
-            }
-            int16_t pid_controller( pidc_t *pid, 
-                int16_t ref, int16_t meas )
-            {
-                int32_t p_term, i_term, d_term;
-                int32_t error, temp;
-
-                error = ref - meas;
-
-                if ( error > pid->max_error ) {
-                    p_term = P_TERM_MAX;
-                } else if ( error < -pid->max_error ) {
-                    p_term = -P_TERM_MAX;
-                } else {
-                    p_term = pid->p_factor * error;
-                }
-
-                temp = pid->sum_error + error;
-                if ( temp > pid->max_sum ) {
-                    i_term = I_TERM_MAX;
-                } else if ( temp < -I_TERM_MAX ) {
-                    i_term = -I_TERM_MAX;
-                } else {
-                    pid->sum_error = temp;
-                    i_term = pid->i_factor * pid->sum_error;
-                }
-
-                d_term = pid->d_factor * pid->last_meas - meas;
-                pid->last_meas = meas;
-
-                return (int16_t) ((p_term + i_term + d_term) 
-                    / SCAL_FACTOR);
-            }
-        \end{verbatim}
+        Реализация ПИД-контоллера на языке С представлена на рисунке \ref{fig:listing-pid1} и
+        рисунке \ref{fig:listing-pid2}.
 
         Все данные ПИД-регулятора хранятся в структуре \verb"pidс_t". Функция\\
         \verb"pid_init()" получает на вход коэффициенты регулятора и
@@ -782,12 +736,24 @@
         Блок-схема функции ПИД-регулятора изображена на рисунке \ref{fig:bs-pid}.
 
         \begin{figure}[ph!]
+            \center{\includegraphics[width=0.60\linewidth]{img/listing-pid1}}
+            \caption{Листинг функции реализации ПИД-регулятора. Лист 1}
+            \label{fig:listing-pid1}
+        \end{figure}
+
+        \begin{figure}[ph!]
+            \center{\includegraphics[width=0.60\linewidth]{img/listing-pid2}}
+            \caption{Листинг функции реализации ПИД-регулятора. Лист 2}
+            \label{fig:listing-pid2}
+        \end{figure}
+
+        \begin{figure}[h!]
             \center{\includegraphics[width=0.45\linewidth]{img/bs-pid}}
             \caption{Блок-схема функции реализации дискретного ПИД-регулятора}
             \label{fig:bs-pid}
         \end{figure}
+        \clearpage
 
-    \newpage
     \subsubsection{Реализация протокола передачи данных Modbus RTU}
         Для взаимодействия с управляющим персональным копьютером в программное
         обеспечение системы управления был добавлен алгориитм, реализующий
@@ -801,7 +767,7 @@
         передачи данных через последовательные линии связи RS-485, RS-422,
         RS-232, а также сети TCP/IP (Modbus TCP).
 
-        Контроллеры на шине Modbus взаимодействуют, используя клиент-серверную
+        Контроллеры на шине Modbus взаимодействуют, используя клиент-\\серверную
         модель, основанную на транзакциях, состоящих из запроса и ответа.
 
         Обычно в сети есть только один клиент, так называемое, <<главное>> 
@@ -817,9 +783,9 @@
         элементарный пакет протокола, так называемый PDU (Protocol Data Unit).
         Структура PDU не зависит от типа линии связи и включает в себя код
         функции и поле данных. Код функции кодируется однобайтовым полем и
-        может принимать значения в диапазоне 1..127. Диапазон значений 128..255
-        зарезервирован для кодов ошибок. Поле данных может быть переменной
-        длины. Размер пакета PDU ограничен 253 байтами.
+        может принимать значения в диапазоне от 1 до 127. Диапазон значений от
+        128 до 255 зарезервирован для кодов ошибок. Поле данных может быть
+        переменной длины. Размер пакета PDU ограничен 253 байтами.
 
         Для передачи пакета по физическим линиям связи PDU помещается в другой
         пакет, содержащий дополнительные поля. Этот пакет носит название ADU
@@ -832,7 +798,7 @@
                 адреса отвечающего ведомого устройства, который может
                 изменяться от 1 до 247. Адрес 0 используется для
                 широковещательной передачи, его распознаёт каждое устройство,
-                адреса в диапазоне 248..255 — зарезервированы; 
+                адреса в диапазоне от 248 до 255 — зарезервированы; 
             \item код функции — это следующее однобайтное поле кадра. Оно
                 говорит ведомому устройству, какие данные или выполнение какого
                 действия требует от него ведущее устройство; 
@@ -867,8 +833,8 @@
         кабельной сети осуществляют по расчетному току нагрузки в следующем
         порядке: 
         \begin{itemize}
-            \item Определение действующего напряжения $U_c=220$ В;
-            \item Определение расчетного тока нагрузки.
+            \item oпределение действующего напряжения $U_c=220$ В;
+            \item oпределение расчетного тока нагрузки.
         \end{itemize}
 
         Так как привод стенда оборудован двигателем мощностью $Р_\text{н}=120$
@@ -877,18 +843,18 @@
             I_p = \frac{P_\text{н} K_\text{з}}
                 {\sqrt{3} \cdot U_\text{н} \cos \varphi \eta} = 
                     \frac{0,12 \cdot 0,9}
-                        {\sqrt{3} \cdot 0,22 \cdot 0,66 \cdot 0,64} = 0,67\;A,
+                        {\sqrt{3} \cdot 0,22 \cdot 0,66 \cdot 0,64} = 0,67\;A.
         \end{equation*}
 
         По каталожным данным к прокладке принимаем двухжильный  кабель сечением
-        $1,5\;\text{мм}^2$ каждый, марки ПВ-3, с допустимым током нагрузки
+        $1,5\;\text{мм}^2$ каждый, марки ПВ-3, с допустимым током нагрузки\\
         $I_\text{д}=19$ А. 
 
         Таким образом на основании выше изложенного к прокладке принимаем
         кабель характеристики которого приведены в таблице \ref{table:cab}.
 
         \begin{longtable}{|p{2,5cm}|p{2,5cm}|p{2,5cm}|p{2,5cm}|p{2,5cm}|p{2,5cm}|}
-        \caption{Характеристики кабелей принятых к прокладке
+        \caption{Характеристики кабелей принятых к прокладке%
             \label{table:cab}}\\
         \hline
         Тип кабеля & Марка & Сечение, $\text{мм}^2$ & Длина, м &
@@ -1004,7 +970,7 @@
         $S_1$ -- расчетный параметр,
         который косвенно отображает желаемую жесткость механических
         характеристик ЭП (для расчетов можно принять равным 0,1);\par
-        $k_{Ui}$ -- коэффициент передачи датчика напряжения на входе АИН; 
+        $k_{Ui}$ -- коэффициент передачи датчика напряжения на входе АИН; \\
         $T_H = k_{kUi}Tv$ --квивалентная постоянная времени интегрирования
             регулятора напряжения на входе АИН;\par
         $k_{kUi}$ -- аладочный коэффициент, значения которого превышают 1. 
@@ -1039,16 +1005,16 @@
                 \cos\left(\omega_k t-\frac{2\pi}{3}\right)+U_\text{ФС} \cos
                     \left( \omega_k t+\frac{2\pi}{3}\right)\right].\\
         \end{gather*}
-
-        Аналогичные соотношения связывают эквивалентные значения токов и
-        потокосцеплений двигателя с соответствующими фазными значениями
-        переменных. Подставляя в эти уравнения выражения для реальных фазных
-        напряжений
-        \begin{gather*}
-            U_\text{ФА} = U_m\cos(\omega_0 t + \varphi_0),\\
-            U_\text{ФВ} = U_m\cos\left(\omega_0t-\frac{2\pi}{3}+\varphi_0\right),\\
-            U_\text{ФC} = U_m\cos\left(\omega_0t+\frac{2\pi}{3}+\varphi_0\right),\\
-        \end{gather*}
+%        Аналогичные соотношения связывают эквивалентные значения токов и
+%        потокосцеплений двигателя с соответствующими фазными значениями
+%        переменных. 
+%        Подставляя в эти уравнения выражения для реальных фазных
+%        напряжений
+%        \begin{gather*}
+%            U_\text{ФА} = U_m\cos(\omega_0 t + \varphi_0),\\
+%            U_\text{ФВ} = U_m\cos\left(\omega_0t-\frac{2\pi}{3}+\varphi_0\right),\\
+%            U_\text{ФC} = U_m\cos\left(\omega_0t+\frac{2\pi}{3}+\varphi_0\right),\\
+%        \end{gather*}
 
         Можно получить выражения для составляющих напряжений в эквивалентной
         2-хфазной системе координат
@@ -1137,13 +1103,14 @@
         где $\sigma=\left(1-\cfrac{L_m^2}{L_s L_r}\right)$ -- коэффициент
         рассеяния двигателя.
 
-        Выражение для электромагнитного момента асинхронного двигателя
-        представляет собой векторное произведение любой пары пространственных
-        векторов токов и потокосцеплений. Таким образом, в системе координат (х
-        – у) можно использовать шесть уравнений для отыскания электромагнитного
-        момента двигателя. При использовании любого из этих выражений
-        результат, естественно, будет один и тот же
-        
+%        Выражение для электромагнитного момента асинхронного двигателя
+%        представляет собой векторное произведение любой пары пространственных
+%        векторов токов и потокосцеплений. 
+        Таким образом%, в системе координат (х
+%        – у) можно использовать шесть уравнений для отыскания электромагнитного
+%        момента двигателя. При использовании любого из этих выражений
+%        результат, естественно, будет один и тот же
+%        
         \begin{gather*}
             \left\{
             \begin{aligned}
@@ -1209,8 +1176,8 @@
     \subsection{Моделирование разомкнутой системы управления в программной
         среде MATLAB}
 
-        Функциональная схема базовой системы частотного электропривода показана
-        на рисунке \ref{fig:struct-old}. Математическая модель системы представлена на 
+        Функциональная схема базовой системы частотного электропривода\\ показана
+        на рисунке \ref{fig:struct-old}. Математическая модель системы представлена на\\ 
         рисунке \ref{fig:open-loop-model}. Результаты моделирования показаны на рисунках
         \ref{fig:open-loop-wm} - \ref{fig:open-loop-is_a}.
 
@@ -1222,7 +1189,7 @@
         электродвигателя.
         
         \begin{figure}[h!]
-            \center{\includegraphics[width=0.8\linewidth]{img/struct-old}}
+            \center{\includegraphics[width=0.6\linewidth]{img/struct-old}}
             \caption{Структурная схема разомкнутой системы электропривода с
                 частотным преобразователем}
             \label{fig:struct-old}
